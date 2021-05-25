@@ -1,0 +1,25 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<br>
+<h3 class="text-center">Preferences</h3>
+
+<a href="{% url 'addpreferencepage' %}" style="position: fixed;bottom: 2vh;right: 2vw;" class="btn btn-success">add preference</a>
+
+<table class="table table-striped container" style="width: 60vw;">
+    <tr class="bg-info text-light">
+        <th>description</th>
+        <th>extra charges</th>
+
+        <th>delete</th>
+    </tr>
+    {% for preference in preferences %}
+    <tr>
+        <td>{{preference.description}}</td>
+        <td>{{preference.extra_charges}}</td>
+
+        <td><a href="/preference/{{preference.id}}/delete/" class="btn btn-sm btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<br>
+<h3 class="text-center">Rooms</h3>
+
+<a href="{% url 'addroompage' %}" style="position: fixed;bottom: 2vh;right: 2vw;" class="btn btn-success">add room</a>
+
+<table class="table table-striped container" style="width: 60vw;">
+    <tr class="bg-info text-light">
+        <th>room_no</th>
+        <th>floor</th>
+        <th>availablity</th>
+        <th>staff</th>
+        <th>room_type</th>
+
+        <th>delete</th>
+    </tr>
+    {% for room in rooms %}
+    <tr>
+        <td>{{room.room_no}}</td>
+        <td>{{room.floor}}</td>
+        <td>{{room.availablity}}</td>
+        <td>{{room.staff}}</td>
+        <td>{{room.room_type}}</td>
+
+        <td><a href="/room/{{room.id}}/delete/" class="btn btn-sm btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

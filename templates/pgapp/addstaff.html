@@ -1,0 +1,21 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<form method="post" action="/staff/add/save/" style="width: fit-content;margin-top: 20vh;padding: 6vh 6vh;" class="container bg-primary">
+    {% csrf_token %}
+    <h1 class="text-center">Add Here</h1>
+    <br>
+    <input type="text" placeholder="name"  name="name" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" placeholder="salary"  name="salary" id="" class="form-control text-center" required>
+    
+    <br>
+    <div class="container" style="width: fit-content;">
+        <input type="submit" value="add" class="btn btn-light">
+    </div>
+
+   
+    
+</form>
+
+{% endblock %}

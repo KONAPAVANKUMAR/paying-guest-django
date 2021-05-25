@@ -1,0 +1,25 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<br>
+<h3 class="text-center">Staff</h3>
+
+<a href="{% url 'addstaffpage' %}" style="position: fixed;bottom: 2vh;right: 2vw;" class="btn btn-success">add staff</a>
+
+<table class="table table-striped container" style="width: 60vw;">
+    <tr class="bg-info text-light">
+        <th>name</th>
+        <th>salary</th>
+        <th>edit</th>
+        <th>delete</th>
+    </tr>
+    {% for staff in staffs %}
+    <tr>
+        <td>{{staff.name}}</td>
+        <td>{{staff.salary}}</td>
+        <td><a href="/staff/{{staff.id}}/edit/" class="btn btn-sm btn-warning">edit</a></td>
+        <td><a href="/staff/{{staff.id}}/delete/" class="btn btn-sm btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

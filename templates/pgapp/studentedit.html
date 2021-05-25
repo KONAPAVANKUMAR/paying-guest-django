@@ -1,0 +1,111 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<form method="post" action="/student/{{student.id}}/edit/save/" style="width: fit-content;margin-top: 2vh;padding: 6vh 6vh;" class="container bg-primary">
+    {% csrf_token %}
+    <h1 class="text-center">Add Here</h1>
+    <br>
+    <input type="text" value="{{student.first_name}}" id placeholder="First Name" name="first_name" class="form-control text-center" required>
+    <br>
+    <input type="text" value="{{student.last_name}}" placeholder="Last Name"  name="last_name" id="" class="form-control text-center" required>
+    <br>
+    <p class="text-light">date of birth : </p>
+    <input type="date" value="{{student.date_of_birth}}" placeholder="date of birth" name="date_of_birth" id="date_of_birth" class="form-control text-center" required>
+    <br>
+    <input type="text" value="{{student.phone_no}}" placeholder="Phone No"  name="phone_no" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" value="{{student.email}}" placeholder="Email" name="email" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" value="{{student.blood_group}}" placeholder="Blood Group" name="blood_group" id="" class="form-control text-center" required>
+    <br>
+    <p class="text-light">join date : </p>
+    <input type="date"  name="join_date" id="join_date" class="form-control text-center" required>
+    <br>
+    <p class="text-light">availed till : </p>
+    <input type="date" value="{{student.availed_till}}"  name="availed_till" id="availed_till" class="form-control text-center" required>
+    <br>
+    
+    <div class="container" style="width: fit-content;">
+    
+    <span class="text-light">room : </span>
+    <select class="form-control-md" name="room_id">
+        <!-- <option value="{{student.room.id}}" selected disabled hidden>{{student.room}}</option> -->
+        {% for room in rooms %}
+        <option value="{{room.id}}">{{room.room_no}}</option>
+
+        {% endfor %}
+    </select>
+    <br>
+    <span class="text-light">preference : </span>
+    <select class="form-control-md" name="preference_id" id="">
+        <!-- <option value="{{student.preference.id}}" selected disabled hidden>{{student.preference}}</option> -->
+        {% for preference in preferences %}
+        <option value="{{preference.id}}">{{preference.description}}</option>
+
+        {% endfor %}
+    </select>
+    
+    </div>
+
+    <br>
+    
+    <div class="container" style="width: fit-content;">
+        <input type="submit" value="edit" class="btn btn-light">
+    </div>
+
+   
+    
+</form>
+
+
+<script>
+    // document.querySelector('#join_date').value = {{student.join_date}};
+    var d = new Date('{{student.join_date}}');
+        
+    var date = d.getDate();
+    var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = d.getFullYear();
+
+    if (month<10) {
+        month = "0"+month;
+    }
+        
+    var dateStr = year + "-" + month +"-"+ date;
+    document.getElementById("join_date").valueAsDate = new Date(dateStr);
+
+    var d = new Date('{{student.availed_till}}');
+        
+    var date = d.getDate();
+    var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = d.getFullYear();
+
+    if (month<10) {
+        month = "0"+month;
+    }
+    if(date<10){
+        date = "0"+date;
+    }
+        
+    var dateStr = year + "-" + month +"-"+ date;
+    document.getElementById("availed_till").valueAsDate = new Date(dateStr);
+
+    var d = new Date('{{student.date_of_birth}}');
+        
+    var date = d.getDate();
+    var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = d.getFullYear();
+
+    if (month<10) {
+        month = "0"+month;
+    }
+    if(date<10){
+        date = "0"+date;
+    }
+        
+    var dateStr = year + "-" + month +"-"+ date;
+    document.getElementById("date_of_birth").valueAsDate = new Date(dateStr);
+
+
+</script>
+
+{% endblock %}

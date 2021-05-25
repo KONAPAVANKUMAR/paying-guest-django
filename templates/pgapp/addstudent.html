@@ -1,0 +1,58 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<form method="post" action="/student/add/save/" style="width: fit-content;margin-top: 2vh;padding: 6vh 6vh;" class="container bg-primary">
+    {% csrf_token %}
+    <h1 class="text-center">Add Here</h1>
+    <br>
+    <input type="text" placeholder="First Name" name="first_name" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" placeholder="Last Name"  name="last_name" id="" class="form-control text-center" required>
+    <br>
+    <p class="text-light">date of birth : </p>
+    <input type="date" placeholder="date of birth" name="date_of_birth" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" placeholder="Phone No"  name="phone_no" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" placeholder="Email" name="email" id="" class="form-control text-center" required>
+    <br>
+    <input type="text" placeholder="Blood Group" name="blood_group" id="" class="form-control text-center" required>
+    <br>
+    <p class="text-light">join date : </p>
+    <input type="date"  name="join_date" id="" class="form-control text-center" required>
+    <br>
+    <p class="text-light">availed till : </p>
+    <input type="date"  name="availed_till" id="" class="form-control text-center" required>
+    <br>
+    
+    <div class="container" style="width: fit-content;">
+    
+    <span class="text-light">room : </span>
+    <select class="form-control-md" name="room_id" id="">
+        {% for room in rooms %}
+        <option value="{{room.id}}">{{room.room_no}}</option>
+
+        {% endfor %}
+    </select>
+    <br>
+    <span class="text-light">preference : </span>
+    <select class="form-control-md" name="preference_id" id="">
+        {% for preference in preferences %}
+        <option value="{{preference.id}}">{{preference.description}}</option>
+
+        {% endfor %}
+    </select>
+    
+    </div>
+
+    <br>
+    
+    <div class="container" style="width: fit-content;">
+        <input type="submit" value="add" class="btn btn-light">
+    </div>
+
+   
+    
+</form>
+
+{% endblock %}

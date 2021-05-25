@@ -1,0 +1,139 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<style>
+
+</style>
+<br>
+<h3 class="text-center">Student Name : {{student.first_name}} {{student.last_name}}</h3>
+<br>
+<form style="padding: 1vh 1vw;" class="d-flex justify-content-between container bg-info text-light"  action="/student/{{student.id}}/addvisitor/" method="post">
+    {% csrf_token %}
+    <input type="text" class="form-control-sm text-center" placeholder="name" name="name" id="" required>
+    <input type="text" class="form-control-sm text-center" placeholder="phone_no" name="phone_no" id="" required>
+    <div>
+        <span>in time : </span>
+    <input type="datetime-local" class="form-control-sm" name="in_time" id="">
+    </div>
+    <div>
+        <span>out time : </span>
+    <input type="datetime-local" class="form-control-sm" name="out_time" id="">
+    </div>
+    
+    <input type="submit" class="btn btn-success" value="add visitor">
+
+</form>
+<br>
+<table class="container table table-striped">
+    <tr class="bg-info text-light">
+        <th>name</th>
+        <th>phone_no</th>
+        <th>in_time</th>
+        <th>out_time</th>
+        <th>delete</th>
+    </tr>
+    {% for visitor in student.visitor.all %}
+    <tr>
+        <td>{{visitor.name}}</td>
+        <td>{{visitor.phone_no}}</td>
+        <td>{{visitor.in_time}}</td>
+        <td>{{visitor.out_time}}</td>
+        <td><a href="/visitor/{{visitor.id}}/delete/" class="btn btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+    
+</table>
+
+<br>
+
+<form style="padding: 1vh 1vw;" class="d-flex justify-content-between container bg-info text-light"  action="/student/{{student.id}}/addfee/" method="post">
+    {% csrf_token %}
+    <input type="text" class="form-control-sm text-center" placeholder="amount" name="amount" id="" required>
+    <span>
+        <span>status : </span>
+        <select class="form-control-sm" name="status" id="">
+            <option value="paid">paid</option>
+            <option value="due">due</option>
+        </select>
+    </span>
+    
+    <div>
+        <span>date : </span>
+    <input type="datetime-local" class="form-control-sm" name="date" id="">
+    </div>
+  
+    <input type="submit" class="btn btn-success" value="add fee">
+
+</form>
+<br>
+<table class="container table table-striped">
+    <tr class="bg-info text-light">
+        <th>amount</th>
+        <th>date</th>
+        <th>status</th>
+        <th>delete</th>
+      
+    </tr>
+    {% for fees in student.fees.all %}
+    <tr>
+        <td>{{fees.amount}}</td>
+        <td>{{fees.date}}</td>
+        <td>{{fees.status}}</td>
+
+        <td><a href="/fee/{{fees.id}}/delete/" class="btn btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+    
+</table>
+<br>
+<form style="padding: 1vh 1vw;" class="d-flex justify-content-between container bg-info text-light"  action="/student/{{student.id}}/addmessfee/" method="post">
+    {% csrf_token %}
+    <input type="text" class="form-control-sm text-center" placeholder="amount" name="amount" id="" required>
+    <span>
+        <span>status : </span>
+        <select class="form-control-sm" name="status" id="">
+            <option value="paid">paid</option>
+            <option value="due">due</option>
+        </select>
+    </span>
+    
+    <div>
+        <span>date : </span>
+    <input type="datetime-local" class="form-control-sm" name="date" id="">
+    </div>
+  
+    <input type="submit" class="btn btn-success" value="add mess fee">
+
+</form>
+<br>
+<table class="container table table-striped">
+    <tr class="bg-info text-light">
+        <th>amount</th>
+        <th>date</th>
+        <th>status</th>
+        <th>delete</th>
+      
+    </tr>
+    {% for fees in student.mess_fees.all %}
+    <tr>
+        <td>{{fees.amount}}</td>
+        <td>{{fees.date}}</td>
+        <td>{{fees.status}}</td>
+
+        <td><a href="/messfee/{{fees.id}}/delete/" class="btn btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+    
+</table>
+
+<div class="container alert alert-info d-flex justify-content-between">
+    <p>hostel fee : {{student.hostel_fee}}</p>
+    <p>mess fee : {{student.mess_fee}}</p>
+    <p>preference fee : {{student.preference_fee}}</p>
+    <p>total fee : {{student.total_fee}}</p>
+
+</div>
+
+
+
+{% endblock %}

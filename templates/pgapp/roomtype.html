@@ -1,0 +1,25 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<br>
+<h3 class="text-center">Room Types</h3>
+
+<a href="{% url 'addroomtypepage' %}" style="position: fixed;bottom: 2vh;right: 2vw;" class="btn btn-success">add room type</a>
+
+<table class="table table-striped container" style="width: 60vw;">
+    <tr class="bg-info text-light">
+        <th>description</th>
+        <th>fees</th>
+
+        <th>delete</th>
+    </tr>
+    {% for roomtype in roomtypes %}
+    <tr>
+        <td>{{roomtype.description}}</td>
+        <td>{{roomtype.fees}}</td>
+
+        <td><a href="/roomtype/{{roomtype.id}}/delete/" class="btn btn-sm btn-danger">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>pg</title>
+</head>
+<body>
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <nav class="navbar navbar-dark bg-info">
+        <div class="container justify-content-between">
+            <a href="{% url 'homepage' %}"><div class="navbar-brand">PG</div></a>
+
+            <div class="d-flex">
+                <a class="nav-link text-light" href="{% url 'homepage' %}">Students</a>
+                <a class="nav-link text-light" href="{% url 'roompage' %}">Rooms</a>
+
+                <a class="nav-link text-light" href="{% url 'preferencepage' %}">Preferences</a>
+                <a class="nav-link text-light" href="{% url 'roomtypepage' %}">Room Type</a>
+                <a style="margin-right: 3vw;" class="nav-link text-light" href="{% url 'staffpage' %}">Staff</a>
+
+                
+
+                <a href="{% url 'logoutuser' %}" class="btn btn-danger">logout</a>
+            </div>
+        </div>
+        
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
